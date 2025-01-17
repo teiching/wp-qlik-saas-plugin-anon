@@ -100,7 +100,7 @@
 	
 		$output = "
 			<script crossorigin='anonymous' type='application/javascript'
-				src='https://cdn.jsdelivr.net/npm/@qlik/embed-web-components'
+				src='https://cdn.jsdelivr.net/npm/@qlik/embed-web-components@1/dist/index.min.js'
 				data-host='" . esc_attr(get_option('qs_host')) . "'
 				data-client-id='" . esc_attr(get_option('qs_client_id')) . "'
 				data-access-code='" . esc_attr(get_option('qs_anon_access_code')) . "'
@@ -131,7 +131,7 @@
 	
 		$output = "
 			<script crossorigin='anonymous' type='application/javascript'
-				src='https://cdn.jsdelivr.net/npm/@qlik/embed-web-components'
+				src='https://cdn.jsdelivr.net/npm/@qlik/embed-web-components@1/dist/index.min.js'
 				data-host='" . esc_attr(get_option('qs_host')) . "'
 				data-client-id='" . esc_attr(get_option('qs_client_id')) . "'
 				ddata-access-code='" . esc_attr(get_option('qs_anon_access_code')) . "'
@@ -161,7 +161,7 @@
 	
 		$output = "
 			<script crossorigin='anonymous' type='application/javascript'
-				src='https://cdn.jsdelivr.net/npm/@qlik/embed-web-components'
+				src='https://cdn.jsdelivr.net/npm/@qlik/embed-web-components@1/dist/index.min.js'
 				data-host='" . esc_attr(get_option('qs_host')) . "'
 				data-client-id='" . esc_attr(get_option('qs_client_id')) . "'
 				data-access-code='" . esc_attr(get_option('qs_anon_access_code')) . "'
