@@ -45,6 +45,10 @@
 						<td><input type="text" name="qs_host" size="50" value="<?php echo esc_attr( get_option('qs_host') ); ?>" /></td>
 					</tr>
 					<tr valign="top">
+						<th scope="row"><?php esc_html_e('Client ID', 'qlik-saas'); ?>:</th>
+						<td><input type="text" name="qs_client_id" size="50" value="<?php echo esc_attr( get_option('qs_client_id') ); ?>" /></td>
+					</tr>
+					<tr valign="top">
 						<th scope="row"><?php esc_html_e('Anonymous Access Code', 'qlik-saas'); ?>:</th>
 						<td><input type="text" name="qs_anon_access_code" size="50" value="<?php echo esc_attr( get_option('qs_anon_access_code') ); ?>" /></td>
 					</tr>
