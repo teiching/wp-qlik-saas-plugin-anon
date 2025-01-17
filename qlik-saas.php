@@ -11,11 +11,10 @@
 	Text Domain: qlik-saas
 	Domain Path: /
 	*/
-	require __DIR__ . '/auth.php';
-
+	
 	defined('ABSPATH') or die("No script kiddies please!"); //Block direct access to this php file
 
-  	define( 'QLIK_SAAS_PLUGIN_VERSION', '2.1.0' );
+  	define( 'QLIK_SAAS_PLUGIN_VERSION', '2.2.0' );
     define( 'QLIK_SAAS_PLUGIN_MINIMUM_WP_VERSION', '5.1' );
 	define( 'QLIK_SAAS_PLUGIN_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
 	
@@ -29,7 +28,7 @@
 	function qlik_saas_plugin_settings() {
 		register_setting( 'qlik_saas-plugin-settings-group', 'qs_host' );
 		register_setting( 'qlik_saas-plugin-settings-group', 'qs_client_id' );
-		register_setting( 'qlik_saas-plugin-settings-group', 'qs_client_secret' );
+		register_setting( 'qlik_saas-plugin-settings-group', 'qs_anon_access_code' );
 	}
 
 	// Create the Admin Setting Page
@@ -46,12 +45,8 @@
 						<td><input type="text" name="qs_host" size="50" value="<?php echo esc_attr( get_option('qs_host') ); ?>" /></td>
 					</tr>
 					<tr valign="top">
-						<th scope="row"><?php esc_html_e('Client ID', 'qlik-saas'); ?>:</th>
-						<td><input type="text" name="qs_client_id" size="50" value="<?php echo esc_attr( get_option('qs_client_id') ); ?>" /></td>
-					</tr>
-					<tr valign="top">
-						<th scope="row"><?php esc_html_e('Client Secret', 'qlik-saas'); ?>:</th>
-						<td><input type="text" name="qs_client_secret" size="50" value="<?php echo esc_attr( get_option('qs_client_secret') ); ?>" /></td>
+						<th scope="row"><?php esc_html_e('Anonymous Access Code', 'qlik-saas'); ?>:</th>
+						<td><input type="text" name="qs_anon_access_code" size="50" value="<?php echo esc_attr( get_option('qs_anon_access_code') ); ?>" /></td>
 					</tr>
 					<tr valign="top">
 						<th scope="row">&nbsp;</th>
@@ -104,8 +99,8 @@
 				src='https://cdn.jsdelivr.net/npm/@qlik/embed-web-components'
 				data-host='" . esc_attr(get_option('qs_host')) . "'
 				data-client-id='" . esc_attr(get_option('qs_client_id')) . "'
-				data-get-access-token='getAccessToken'
-				data-auth-type='Oauth2'>
+				data-access-code='" . esc_attr(get_option('qs_anon_access_code')) . "'
+				data-auth-type='anonymous'>
 			</script>
 			<div style='width: {$atts['width']}; height: {$atts['height']};'>
 				<qlik-embed ui='classic/app' 
@@ -135,8 +130,8 @@
 				src='https://cdn.jsdelivr.net/npm/@qlik/embed-web-components'
 				data-host='" . esc_attr(get_option('qs_host')) . "'
 				data-client-id='" . esc_attr(get_option('qs_client_id')) . "'
-				data-get-access-token='getAccessToken'
-				data-auth-type='Oauth2'>
+				ddata-access-code='" . esc_attr(get_option('qs_anon_access_code')) . "'
+				data-auth-type='anonymous'>
 			</script>
 			<div style='width: {$atts['width']}; height: {$atts['height']};'>
 				<qlik-embed ui='analytics/chart' 
@@ -165,8 +160,8 @@
 				src='https://cdn.jsdelivr.net/npm/@qlik/embed-web-components'
 				data-host='" . esc_attr(get_option('qs_host')) . "'
 				data-client-id='" . esc_attr(get_option('qs_client_id')) . "'
-				data-get-access-token='getAccessToken'
-				data-auth-type='Oauth2'>
+				data-access-code='" . esc_attr(get_option('qs_anon_access_code')) . "'
+				data-auth-type='anonymous'>
 			</script>
 			<div style='width: {$atts['width']}; height: {$atts['height']};'>
 				<qlik-embed ui='analytics/selections' 
@@ -182,8 +177,8 @@
 	// Uninstall the settings when the plugin is uninstalled
 	function qlik_saas_uninstall() {
 		unregister_setting( 'qlik_saas-plugin-settings-group', 'qs_host' );
-		unregister_setting( 'qlik_saas-plugin-settings-group', 'qs_privateKey' );
-		unregister_setting( 'qlik_saas-plugin-settings-group', 'qs_keyid' );
+		unregister_setting( 'qlik_saas-plugin-settings-group', 'qs_client_id' );
+		unregister_setting( 'qlik_saas-plugin-settings-group', 'qs_anon_access_code' );
 	}
 	register_uninstall_hook(  __FILE__, 'qlik_saas_uninstall' );
 ?>
